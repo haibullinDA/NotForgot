@@ -22,6 +22,7 @@
 		CFC1AD8226132E160053B333 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD7326132E160053B333 /* OFL.txt */; };
 		CFC1AD8326132E160053B333 /* Nunito-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD7426132E160053B333 /* Nunito-Italic.ttf */; };
 		CFC1AD8426132E160053B333 /* Nunito-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD7526132E160053B333 /* Nunito-LightItalic.ttf */; };
+		CFC1AD982613448E0053B333 /* UICustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC1AD972613448E0053B333 /* UICustomButton.swift */; };
 		CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE049492612D29900ED98AD /* AppDelegate.swift */; };
 		CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0494B2612D29900ED98AD /* SceneDelegate.swift */; };
 		CFE0494E2612D29900ED98AD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0494D2612D29900ED98AD /* SignInViewController.swift */; };
@@ -46,6 +47,7 @@
 		CFC1AD7326132E160053B333 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		CFC1AD7426132E160053B333 /* Nunito-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic.ttf"; sourceTree = "<group>"; };
 		CFC1AD7526132E160053B333 /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
+		CFC1AD972613448E0053B333 /* UICustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICustomButton.swift; sourceTree = "<group>"; };
 		CFE049462612D29900ED98AD /* NotForgot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotForgot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE049492612D29900ED98AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFE0494B2612D29900ED98AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,11 +91,27 @@
 			path = Nunito;
 			sourceTree = "<group>";
 		};
+		CFC1AD8C26133BDA0053B333 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFC1AD962613448E0053B333 /* CustomObjects */ = {
+			isa = PBXGroup;
+			children = (
+				CFC1AD972613448E0053B333 /* UICustomButton.swift */,
+			);
+			path = CustomObjects;
+			sourceTree = "<group>";
+		};
 		CFE0493D2612D29900ED98AD = {
 			isa = PBXGroup;
 			children = (
 				CFE049482612D29900ED98AD /* NotForgot */,
 				CFE049472612D29900ED98AD /* Products */,
+				CFC1AD8C26133BDA0053B333 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +133,7 @@
 				CFE049522612D29D00ED98AD /* Assets.xcassets */,
 				CFE049542612D29D00ED98AD /* LaunchScreen.storyboard */,
 				CFE049572612D29D00ED98AD /* Info.plist */,
+				CFC1AD962613448E0053B333 /* CustomObjects */,
 				CFC1AD6626132E160053B333 /* Nunito */,
 			);
 			path = NotForgot;
@@ -136,6 +155,8 @@
 			dependencies = (
 			);
 			name = NotForgot;
+			packageProductDependencies = (
+			);
 			productName = NotForgot;
 			productReference = CFE049462612D29900ED98AD /* NotForgot.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +184,8 @@
 				Base,
 			);
 			mainGroup = CFE0493D2612D29900ED98AD;
+			packageReferences = (
+			);
 			productRefGroup = CFE049472612D29900ED98AD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -205,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFC1AD982613448E0053B333 /* UICustomButton.swift in Sources */,
 				CFE0494E2612D29900ED98AD /* SignInViewController.swift in Sources */,
 				CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
