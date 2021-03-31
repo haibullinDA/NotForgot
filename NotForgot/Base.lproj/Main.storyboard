@@ -148,6 +148,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="CreateUserAccountAndSignIn:" destination="1xU-16-x9T" eventType="touchUpInside" id="wmG-9Z-TeP"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-Mi-m7U">
                                 <rect key="frame" x="128" y="751" width="158.5" height="36"/>
@@ -275,6 +278,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppn-Kd-5bz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1556.521739130435" y="45.535714285714285"/>
+        </scene>
+        <!--Main Screen View Controller-->
+        <scene sceneID="oJJ-vE-6mx">
+            <objects>
+                <viewController id="Ftq-yc-cc2" customClass="MainScreenViewController" customModule="NotForgot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0S7-eq-3RQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbg-je-Ddp">
+                                <rect key="frame" x="0.0" y="140" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="I6q-u3-fca"/>
+                                    <constraint firstAttribute="height" constant="1" id="xRo-ad-rNr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3pq-g4-zTt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dbg-je-Ddp" firstAttribute="leading" secondItem="3pq-g4-zTt" secondAttribute="leading" id="Hm7-gH-UFZ"/>
+                            <constraint firstItem="3pq-g4-zTt" firstAttribute="trailing" secondItem="dbg-je-Ddp" secondAttribute="trailing" id="cj0-Ev-4vP"/>
+                            <constraint firstItem="dbg-je-Ddp" firstAttribute="top" secondItem="3pq-g4-zTt" secondAttribute="top" constant="96" id="e5n-qR-N1o"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zJB-Gl-kNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2449" y="46"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I0I-vq-doX">

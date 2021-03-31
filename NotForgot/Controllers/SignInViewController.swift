@@ -11,9 +11,21 @@ class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    let user = User()
+    
+    let userDefaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeAllTextField()
+        if let temp = user.getEMail(){
+            print(temp)
+        }
+        
+        if let temp = user.getPassword(){
+            print(temp)
+        }
+
         // Do any additional setup after loading the view.
     }
 

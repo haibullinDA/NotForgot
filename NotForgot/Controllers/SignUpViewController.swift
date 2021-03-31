@@ -14,10 +14,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordValidateTextField: UITextField!
+    var user = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         customizeAllTextField()
     }
     
@@ -43,12 +45,77 @@ class SignUpViewController: UIViewController {
         object.borderStyle = .none
         object.layer.addSublayer(bottomLine)
     }
+    
+    func signIn(){
+        
+    }
+    
+    @IBAction func CreateUserAccountAndSignIn(_ sender: UICustomButton) {
+        guard let firstName = firstNameTextField.text else{
+            return
+        }
+        guard let lastName = lastNameTextField.text else{
+            return
+        }
+        guard let email = emailTextField.text else{
+            return
+        }
+        guard let password = passwordTextField.text else{
+            return
+        }
+        guard let passwordValidate = passwordValidateTextField.text else{
+            return
+        }
+      
+        if firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || passwordValidate.isEmpty{
+            let alertController = UIAlertController(title: "Предупреждение", message: "Не все поля заполнены", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        } else{
+            user.setFirstName(firstname: firstName)
+            user.setLastName(lastName: lastName)
+            user.setEMail(email: email)
+            user.setPassword(password: password)
+            self.signIn()
+        }
+    }
 }
 
+
+
+//MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate{
     
+
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        if textField == self.emailTextField{
+            if let text = textField.text{
+                if User().validateEMail(Email: text) == false{
+                    let alertController = UIAlertController(title: "Предупреждение", message: "Введите почтовый ящик", preferredStyle: .actionSheet)
+                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    alertController.addAction(action)
+                    self.present(alertController, animated: true, completion: nil)
+                    textField.resignFirstResponder()
+                    return true
+                }
+            }
+        }
+        if textField == self.passwordValidateTextField{
+            if let text = textField.text{
+                if text != self.passwordTextField.text{
+                    let alertController = UIAlertController(title: "Предупреждение", message: "Пароли не совпадают", preferredStyle: .actionSheet)
+                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    alertController.addAction(action)
+                    self.present(alertController, animated: true, completion: nil)
+                    textField.resignFirstResponder()
+                    return true
+                }
+            }
+        }
         textField.resignFirstResponder()
         return true
     }
+    
 }

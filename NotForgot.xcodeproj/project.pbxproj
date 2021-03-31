@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE0C26143312008BC22D /* SignUpViewController.swift */; };
+		CF1FEE1326143C0A008BC22D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE1226143C0A008BC22D /* User.swift */; };
+		CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64E268261482A7002F119F /* MainScreenViewController.swift */; };
 		CFC1AD7626132E160053B333 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */; };
 		CFC1AD7726132E160053B333 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */; };
 		CFC1AD7826132E160053B333 /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		CF1FEE0C26143312008BC22D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		CF1FEE1226143C0A008BC22D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CF64E268261482A7002F119F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
 		CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -76,8 +80,17 @@
 			children = (
 				CFE0494D2612D29900ED98AD /* SignInViewController.swift */,
 				CF1FEE0C26143312008BC22D /* SignUpViewController.swift */,
+				CF64E268261482A7002F119F /* MainScreenViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CF1FEE1126143BF1008BC22D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF1FEE1226143C0A008BC22D /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CFC1AD6626132E160053B333 /* Nunito */ = {
@@ -139,6 +152,7 @@
 			children = (
 				CFE049492612D29900ED98AD /* AppDelegate.swift */,
 				CFE0494B2612D29900ED98AD /* SceneDelegate.swift */,
+				CF1FEE1126143BF1008BC22D /* Model */,
 				CF1FEE0B2614329B008BC22D /* Controllers */,
 				CFE0494F2612D29900ED98AD /* Main.storyboard */,
 				CFE049522612D29D00ED98AD /* Assets.xcassets */,
@@ -241,6 +255,8 @@
 			files = (
 				CFC1AD982613448E0053B333 /* UICustomButton.swift in Sources */,
 				CFE0494E2612D29900ED98AD /* SignInViewController.swift in Sources */,
+				CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */,
+				CF1FEE1326143C0A008BC22D /* User.swift in Sources */,
 				CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
 				CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */,
