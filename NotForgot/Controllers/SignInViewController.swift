@@ -12,23 +12,49 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
     let user = User()
     
     let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeAllTextField()
-        if let temp = user.getEMail(){
-            print(temp)
+        //user.remove() Удалить данные для проверки регистрации
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if user.getEMail() != nil && user.getPassword() != nil{
+            performSegue(withIdentifier: "goToListTask", sender: nil)
         }
-        
-        if let temp = user.getPassword(){
-            print(temp)
-        }
-
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func createAccauntButton(_ sender: Any) {
+        performSegue(withIdentifier: "goToSignUp", sender: nil)
+    }
+    
+    @IBAction func signIn(_ sender: Any) {
+        guard let email = self.emailTextField.text else{
+            return
+        }
+        guard let password = self.passwordTextField.text else {
+            return
+        }
+        if user.validateDate(email: email, password: password){
+            performSegue(withIdentifier: "goToListTask", sender: nil)
+        }else{
+            let alertController = UIAlertController(title: "Предупреждение", message: "Введены неверные данные", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    @IBAction func unwindSegueToSignIn(for segue: UIStoryboardSegue){
+        
+    }
+    
+    
     private func customizeAllTextField(){
         customizeTextField(object: emailTextField)
         customizeTextField(object: passwordTextField)

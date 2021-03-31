@@ -9,17 +9,13 @@ import Foundation
 
 class User{
     
-    private var firstName: String
-    private var lastName: String
-    private var email: String
-    private var password: String
     var userDefaults = UserDefaults.standard
     
-    init(){
-        self.firstName = ""
-        self.lastName = ""
-        self.email = ""
-        self.password = ""
+    public func remove(){
+        self.userDefaults.removeObject(forKey: "firstname")
+        self.userDefaults.removeObject(forKey: "lastName")
+        self.userDefaults.removeObject(forKey: "email")
+        self.userDefaults.removeObject(forKey: "password")
     }
     
     public func setFirstName(firstname: String){
@@ -39,21 +35,21 @@ class User{
         if let email = self.userDefaults.object(forKey: "email"){
             return email as? String
         }
-        return ""
+        return nil
     }
     
     public func getPassword() -> String?{
         if let password = self.userDefaults.object(forKey: "password"){
             return password as? String
         }
-        return ""
+        return nil
     }
     public func validateEMail(Email target: String) -> Bool{
         return target.isValidEmail()
     }
     
-    public func validatePassword(target: String) -> Bool{
-        if self.password == target{
+    public func validateDate(email: String,password: String) -> Bool{
+        if email == self.getEMail() && password == self.getPassword(){
             return true
         }
         return false

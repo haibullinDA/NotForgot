@@ -46,8 +46,15 @@ class SignUpViewController: UIViewController {
         object.layer.addSublayer(bottomLine)
     }
     
-    func signIn(){
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goBackSignIn" {
+            if let vc = segue.destination as? SignInViewController{
+                if let param = sender as? [String]{
+                    vc.emailTextField.text = param[0]
+                    vc.passwordTextField.text = param[1]
+                }
+            }
+        }
     }
     
     @IBAction func CreateUserAccountAndSignIn(_ sender: UICustomButton) {
@@ -77,8 +84,13 @@ class SignUpViewController: UIViewController {
             user.setLastName(lastName: lastName)
             user.setEMail(email: email)
             user.setPassword(password: password)
-            self.signIn()
+            print("Данные записаны")
+            self.performSegue(withIdentifier: "goBackSignIn", sender: [email,password])
         }
+    }
+    
+    @IBAction func goBackSignIn(_ sender: Any) {
+        self.performSegue(withIdentifier: "goBackSignIn", sender: nil)
     }
 }
 
