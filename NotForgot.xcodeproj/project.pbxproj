@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE0C26143312008BC22D /* SignUpViewController.swift */; };
 		CFC1AD7626132E160053B333 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */; };
 		CFC1AD7726132E160053B333 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */; };
 		CFC1AD7826132E160053B333 /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF1FEE0C26143312008BC22D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
 		CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -69,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF1FEE0B2614329B008BC22D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CFE0494D2612D29900ED98AD /* SignInViewController.swift */,
+				CF1FEE0C26143312008BC22D /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		CFC1AD6626132E160053B333 /* Nunito */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +139,7 @@
 			children = (
 				CFE049492612D29900ED98AD /* AppDelegate.swift */,
 				CFE0494B2612D29900ED98AD /* SceneDelegate.swift */,
-				CFE0494D2612D29900ED98AD /* SignInViewController.swift */,
+				CF1FEE0B2614329B008BC22D /* Controllers */,
 				CFE0494F2612D29900ED98AD /* Main.storyboard */,
 				CFE049522612D29D00ED98AD /* Assets.xcassets */,
 				CFE049542612D29D00ED98AD /* LaunchScreen.storyboard */,
@@ -232,6 +243,7 @@
 				CFE0494E2612D29900ED98AD /* SignInViewController.swift in Sources */,
 				CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
+				CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

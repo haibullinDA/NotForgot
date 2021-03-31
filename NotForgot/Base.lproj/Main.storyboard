@@ -21,19 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VVj-Rp-1Zc">
-                                <rect key="frame" x="20" y="270" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почтовый ящик" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VVj-Rp-1Zc">
+                                <rect key="frame" x="20" y="270" width="374" height="41"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNg-Aq-pCe">
-                                <rect key="frame" x="20" y="327" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNg-Aq-pCe">
+                                <rect key="frame" x="20" y="335" width="374" height="41"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
@@ -54,6 +54,9 @@
                                         <rect key="frame" x="113.5" y="0.0" width="165" height="36"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                         <state key="normal" title="Зарегистрироваться"/>
+                                        <connections>
+                                            <segue destination="1xU-16-x9T" kind="show" id="uxr-Up-i7x"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -74,17 +77,28 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFA-Wd-hzU">
+                                <rect key="frame" x="0.0" y="140" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="LF4-3e-hQS"/>
+                                    <constraint firstAttribute="width" constant="414" id="d7G-ji-CQi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cLf-WL-eWO" firstAttribute="top" secondItem="cP0-5v-gbR" secondAttribute="bottom" constant="35" id="3Pm-dy-ICX"/>
+                            <constraint firstItem="SFA-Wd-hzU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4uv-Lp-RSw"/>
                             <constraint firstItem="sNg-Aq-pCe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BEA-fP-5aA"/>
+                            <constraint firstAttribute="trailing" secondItem="SFA-Wd-hzU" secondAttribute="trailing" id="CQk-Kd-pug"/>
                             <constraint firstItem="cP0-5v-gbR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="J7G-jC-6Hq"/>
                             <constraint firstItem="VVj-Rp-1Zc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="LzN-Uc-QJg"/>
                             <constraint firstItem="sNg-Aq-pCe" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RnW-Sf-bQE"/>
                             <constraint firstItem="cLf-WL-eWO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SUc-xH-pdI"/>
-                            <constraint firstItem="sNg-Aq-pCe" firstAttribute="top" secondItem="VVj-Rp-1Zc" secondAttribute="bottom" constant="23" id="UhM-Ol-4tH"/>
+                            <constraint firstItem="sNg-Aq-pCe" firstAttribute="top" secondItem="VVj-Rp-1Zc" secondAttribute="bottom" constant="24" id="UhM-Ol-4tH"/>
+                            <constraint firstItem="SFA-Wd-hzU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ehX-Er-bmt"/>
                             <constraint firstItem="VVj-Rp-1Zc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="oCu-9D-597"/>
                             <constraint firstItem="VVj-Rp-1Zc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="plJ-sf-Obh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VVj-Rp-1Zc" secondAttribute="trailing" constant="20" id="rG2-QQ-8Ua"/>
@@ -100,7 +114,167 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="815.94202898550736" y="45.535714285714285"/>
+            <point key="canvasLocation" x="752" y="46"/>
+        </scene>
+        <!--Создать аккаунт-->
+        <scene sceneID="TAI-YY-nrg">
+            <objects>
+                <viewController id="1xU-16-x9T" customClass="SignUpViewController" customModule="NotForgot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PFd-xS-0yT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGn-dC-0wx">
+                                <rect key="frame" x="0.0" y="140" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="kt9-ks-euD"/>
+                                    <constraint firstAttribute="width" constant="414" id="mMh-CZ-Jsp"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlB-MH-OPL" customClass="UICustomButton" customModule="NotForgot" customModuleProvider="target">
+                                <rect key="frame" x="63" y="668" width="288" height="48"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="287" id="2js-sz-VV1"/>
+                                    <constraint firstAttribute="height" constant="48" id="xfK-M7-cCL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="26"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-Mi-m7U">
+                                <rect key="frame" x="128" y="751" width="158.5" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть аккаунт?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZB-TN-3cV">
+                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="36"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUt-7a-FAw">
+                                        <rect key="frame" x="109.5" y="0.0" width="49" height="36"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                        <state key="normal" title="Войти"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="P9x-lE-buu"/>
+                                    <constraint firstAttribute="width" constant="158.5" id="lpx-ED-uMu"/>
+                                </constraints>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почтовый ящик" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OlM-Es-MJz">
+                                <rect key="frame" x="20" y="264" width="374" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="WCD-JK-oLx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-hc-mBP">
+                                <rect key="frame" x="20" y="329" width="374" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="1qa-Vy-qJw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-zb-B4R">
+                                <rect key="frame" x="20" y="394" width="374" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="FaI-ml-6YG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gA-Xe-v3O">
+                                <rect key="frame" x="20" y="459" width="374" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="PP5-lW-ZXN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Повторите пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-i8-4r8">
+                                <rect key="frame" x="20" y="524" width="374" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="RqH-ch-jeI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="12r-SU-vmw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="VGn-dC-0wx" secondAttribute="trailing" id="0w3-CE-Gad"/>
+                            <constraint firstItem="VGn-dC-0wx" firstAttribute="top" secondItem="12r-SU-vmw" secondAttribute="top" id="1tH-JT-15v"/>
+                            <constraint firstItem="cLe-i8-4r8" firstAttribute="top" secondItem="6gA-Xe-v3O" secondAttribute="bottom" constant="24" id="1y9-hn-kfY"/>
+                            <constraint firstItem="cLe-i8-4r8" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" constant="20" id="2qp-6U-ThP"/>
+                            <constraint firstItem="VlB-MH-OPL" firstAttribute="centerX" secondItem="8bs-Mi-m7U" secondAttribute="centerX" id="4I3-ez-1NP"/>
+                            <constraint firstItem="GT5-hc-mBP" firstAttribute="top" secondItem="OlM-Es-MJz" secondAttribute="bottom" constant="24" id="5tP-Q1-QmR"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="6gA-Xe-v3O" secondAttribute="trailing" constant="20" id="6sh-hJ-GKh"/>
+                            <constraint firstItem="8bs-Mi-m7U" firstAttribute="top" secondItem="VlB-MH-OPL" secondAttribute="bottom" constant="35" id="7FH-FL-qhh"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="cLe-i8-4r8" secondAttribute="trailing" constant="20" id="Aip-DU-QfJ"/>
+                            <constraint firstItem="d43-zb-B4R" firstAttribute="top" secondItem="GT5-hc-mBP" secondAttribute="bottom" constant="24" id="I6H-Nk-CKl"/>
+                            <constraint firstItem="8bs-Mi-m7U" firstAttribute="centerX" secondItem="12r-SU-vmw" secondAttribute="centerX" id="I86-fX-rqn"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="OlM-Es-MJz" secondAttribute="trailing" constant="20" id="NyX-AK-VZP"/>
+                            <constraint firstAttribute="bottom" secondItem="VlB-MH-OPL" secondAttribute="bottom" constant="180" id="RMR-tY-h7y"/>
+                            <constraint firstItem="6gA-Xe-v3O" firstAttribute="top" secondItem="d43-zb-B4R" secondAttribute="bottom" constant="24" id="Vmc-P1-k38"/>
+                            <constraint firstItem="OlM-Es-MJz" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" constant="20" id="bRR-A8-GIH"/>
+                            <constraint firstItem="d43-zb-B4R" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" constant="20" id="e4E-XA-hUi"/>
+                            <constraint firstItem="GT5-hc-mBP" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" constant="20" id="fut-7x-MUi"/>
+                            <constraint firstItem="OlM-Es-MJz" firstAttribute="top" secondItem="12r-SU-vmw" secondAttribute="top" constant="124" id="kHV-jR-EwH"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="VlB-MH-OPL" secondAttribute="trailing" constant="63" id="oX1-dY-nsN"/>
+                            <constraint firstItem="VGn-dC-0wx" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" id="oXk-AU-IHs"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="d43-zb-B4R" secondAttribute="trailing" constant="20" id="qyB-5r-YG0"/>
+                            <constraint firstItem="6gA-Xe-v3O" firstAttribute="leading" secondItem="12r-SU-vmw" secondAttribute="leading" constant="20" id="rNW-Ln-X1R"/>
+                            <constraint firstItem="12r-SU-vmw" firstAttribute="trailing" secondItem="GT5-hc-mBP" secondAttribute="trailing" constant="20" id="vuk-bD-3dR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Создать аккаунт" id="csu-MM-SfA"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="OlM-Es-MJz" id="egl-TR-DW7"/>
+                        <outlet property="firstNameTextField" destination="GT5-hc-mBP" id="g1A-jY-zzD"/>
+                        <outlet property="lastNameTextField" destination="d43-zb-B4R" id="4G4-Bo-hE2"/>
+                        <outlet property="passwordTextField" destination="6gA-Xe-v3O" id="bGL-1Y-Cj0"/>
+                        <outlet property="passwordValidateTextField" destination="cLe-i8-4r8" id="AdJ-Hk-w1M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ppn-Kd-5bz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1556.521739130435" y="45.535714285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I0I-vq-doX">
@@ -122,6 +296,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="VlB-MH-OPL">
+            <size key="intrinsicContentSize" width="75" height="48"/>
+        </designable>
         <designable name="cP0-5v-gbR">
             <size key="intrinsicContentSize" width="75" height="48"/>
         </designable>
