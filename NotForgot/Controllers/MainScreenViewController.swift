@@ -36,9 +36,10 @@ class MainScreenViewController: UIViewController {
     }
     
     @objc func createTask(sender: UICustomButton){
-        
+        performSegue(withIdentifier: "newTask", sender: nil)
     }
     
+    //Load image
     private func loadImage(){
         guard let imageURL = URL(string: "https://loremflickr.com/g/640/480/holiday") else{
             return
@@ -46,9 +47,11 @@ class MainScreenViewController: UIViewController {
         placeholderImageView.load(url: imageURL)
     }
  
-
+    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue){}
 }
 
+
+//MARK: - UIImageView LoadURL
 extension UIImageView {
     func load(url: URL) {
         DispatchQueue.global(qos: .utility).async {
@@ -60,7 +63,7 @@ extension UIImageView {
         }
     }
 }
-
+//MARK: - UITableViewDelegate,UITableViewDataSource
 extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         5
