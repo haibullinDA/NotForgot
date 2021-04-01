@@ -24,6 +24,7 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         setup()
     }
     
@@ -66,8 +67,8 @@ extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire)
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire) as! UICustomTableViewCell
+        return cell
     }
     
     

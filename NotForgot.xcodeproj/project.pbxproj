@@ -11,6 +11,7 @@
 		CF1FEE1326143C0A008BC22D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE1226143C0A008BC22D /* User.swift */; };
 		CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64E268261482A7002F119F /* MainScreenViewController.swift */; };
 		CFA067672615B21300005F7E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067662615B21300005F7E /* CheckBox.swift */; };
+		CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */; };
 		CFC1AD7626132E160053B333 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */; };
 		CFC1AD7726132E160053B333 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */; };
 		CFC1AD7826132E160053B333 /* Nunito-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */; };
@@ -40,6 +41,7 @@
 		CF1FEE1226143C0A008BC22D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CF64E268261482A7002F119F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		CFA067662615B21300005F7E /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTableViewCell.swift; sourceTree = "<group>"; };
 		CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
 		CFC1AD6926132E160053B333 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				CFC1AD972613448E0053B333 /* UICustomButton.swift */,
+				CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */,
 				CFA067662615B21300005F7E /* CheckBox.swift */,
 			);
 			path = CustomObjects;
@@ -262,6 +265,7 @@
 				CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */,
 				CF1FEE1326143C0A008BC22D /* User.swift in Sources */,
 				CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */,
+				CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
 				CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */,
 			);
