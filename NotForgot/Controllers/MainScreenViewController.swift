@@ -17,26 +17,17 @@ class MainScreenViewController: UIViewController {
     @IBOutlet weak var plusTaskButton: UIButton!
     @IBOutlet weak var viewTopBorder: UIView!
     
-    var collectionView = UICollectionView()
+    @IBOutlet weak var tableView: UITableView!
+    let cellIdentifire = "cell"
     
-    func initCollectionView(){
-        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        self.collectionView.backgroundColor = .black
-        self.view.addSubview(self.collectionView)
-    }
-    
-    func createConstraintForCollectionView(){
-        NSLayoutConstraint(item: self.collectionView,
-                           attribute: .top,
-                           relatedBy: .equal,
-                           toItem: self.viewTopBorder,
-                           attribute: .topMargin,
-                           multiplier: 1,
-                           constant: 0)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        setup()
+    }
+    
+    func setup(){
         plusTaskButton.isEnabled = false
         plusTaskButton.isHidden = true
         createNewTaskButton.addTarget(self, action: #selector(createTask(sender:)), for: .touchUpInside)
@@ -69,13 +60,14 @@ extension UIImageView {
     }
 }
 
-extension MainScreenViewController: UICollectionViewDelegate,UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        5
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire)
+        return cell!
     }
     
     
