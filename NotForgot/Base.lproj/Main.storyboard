@@ -512,7 +512,7 @@
                                 <rect key="frame" x="132.5" y="20" width="149" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="i6u-DK-YBk"/>
-                                    <constraint firstAttribute="width" constant="149" id="v9A-h7-nX5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="149" id="v9A-h7-nX5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -565,53 +565,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMh-M2-mqc">
-                                <rect key="frame" x="0.0" y="547" width="414" height="295"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-Cx-Lxk">
-                                        <rect key="frame" x="8" y="8" width="73" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="37" id="12L-Qf-oY9"/>
-                                            <constraint firstAttribute="width" constant="73" id="63a-wt-aFp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                        <state key="normal" title="Закрыть">
-                                            <color key="titleColor" systemColor="systemPinkColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBackSignIn:" destination="1xU-16-x9T" eventType="touchUpInside" id="Bc4-hy-dyW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRu-XH-xc5">
-                                        <rect key="frame" x="376" y="8" width="30" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="37" id="5Z5-dF-Kz6"/>
-                                            <constraint firstAttribute="width" constant="30" id="Uwi-Uz-Ctg"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                        <state key="normal" title="Ок"/>
-                                        <connections>
-                                            <action selector="goBackSignIn:" destination="1xU-16-x9T" eventType="touchUpInside" id="aHd-Yu-zUf"/>
-                                        </connections>
-                                    </button>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0Qh-dM-MfJ">
-                                        <rect key="frame" x="0.0" y="53" width="414" height="216"/>
-                                    </datePicker>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="0Qh-dM-MfJ" firstAttribute="leading" secondItem="tMh-M2-mqc" secondAttribute="leading" id="F5a-04-6i8"/>
-                                    <constraint firstAttribute="trailing" secondItem="CRu-XH-xc5" secondAttribute="trailing" constant="8" id="MQQ-HR-wzA"/>
-                                    <constraint firstAttribute="trailing" secondItem="0Qh-dM-MfJ" secondAttribute="trailing" id="Q6I-Qc-FXF"/>
-                                    <constraint firstAttribute="width" constant="414" id="Qqg-bZ-JOt"/>
-                                    <constraint firstItem="U6b-Cx-Lxk" firstAttribute="leading" secondItem="tMh-M2-mqc" secondAttribute="leading" constant="8" id="aBK-4A-teL"/>
-                                    <constraint firstItem="0Qh-dM-MfJ" firstAttribute="top" secondItem="tMh-M2-mqc" secondAttribute="top" constant="53" id="aEd-8u-1hS"/>
-                                    <constraint firstItem="U6b-Cx-Lxk" firstAttribute="top" secondItem="tMh-M2-mqc" secondAttribute="top" constant="8" id="f1t-OZ-KGn"/>
-                                    <constraint firstAttribute="height" constant="295" id="g1t-9e-WJc"/>
-                                    <constraint firstItem="CRu-XH-xc5" firstAttribute="top" secondItem="tMh-M2-mqc" secondAttribute="top" constant="8" id="lvF-2v-2VW"/>
-                                    <constraint firstAttribute="bottom" secondItem="0Qh-dM-MfJ" secondAttribute="bottom" constant="26" id="sdc-sE-dyJ"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aza-Ji-By1"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -628,11 +581,8 @@
                             <constraint firstItem="qGU-M0-zWk" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="ZpU-dS-l9g"/>
                             <constraint firstItem="FtY-h4-h8A" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="a5T-BV-zt9"/>
                             <constraint firstItem="4KG-l9-ppZ" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="efq-mF-Mc8"/>
-                            <constraint firstItem="aza-Ji-By1" firstAttribute="trailing" secondItem="tMh-M2-mqc" secondAttribute="trailing" id="fJU-ZR-ufQ"/>
-                            <constraint firstItem="tMh-M2-mqc" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="gU5-t5-h55"/>
                             <constraint firstItem="FtY-h4-h8A" firstAttribute="top" secondItem="qGU-M0-zWk" secondAttribute="bottom" constant="20" id="jcM-LC-LcQ"/>
                             <constraint firstItem="aza-Ji-By1" firstAttribute="trailing" secondItem="4KG-l9-ppZ" secondAttribute="trailing" id="jhg-59-qQl"/>
-                            <constraint firstItem="tMh-M2-mqc" firstAttribute="bottom" secondItem="aza-Ji-By1" secondAttribute="bottom" constant="34" id="mhE-wK-PpL"/>
                             <constraint firstItem="4qq-nq-35S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OSw-L5-bZH" secondAttribute="trailing" constant="39" id="mwo-H5-cX5"/>
                             <constraint firstItem="aza-Ji-By1" firstAttribute="trailing" secondItem="1uE-dU-oSC" secondAttribute="trailing" id="oPP-D1-dkw"/>
                             <constraint firstItem="1uE-dU-oSC" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="zpd-6j-r37"/>
@@ -640,13 +590,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="onr-8U-EPL"/>
                     <connections>
-                        <outlet property="buttonCloseInPicker" destination="U6b-Cx-Lxk" id="fZ5-sp-nzS"/>
-                        <outlet property="buttonOkInPicker" destination="CRu-XH-xc5" id="KzO-95-2iK"/>
                         <outlet property="closeButton" destination="OSw-L5-bZH" id="gnR-Nw-ZNA"/>
-                        <outlet property="datePicker" destination="0Qh-dM-MfJ" id="AGb-7F-Ycc"/>
-                        <outlet property="datePickerView" destination="tMh-M2-mqc" id="0tR-BK-0vo"/>
                         <outlet property="descriptionTextView" destination="qGU-M0-zWk" id="FKW-Vs-UyS"/>
-                        <outlet property="saveButton" destination="CRu-XH-xc5" id="QfO-kX-lEc"/>
                         <outlet property="tableView" destination="FtY-h4-h8A" id="z5z-Ng-unF"/>
                         <outlet property="titleTextView" destination="4KG-l9-ppZ" id="9ts-V4-De7"/>
                         <segue destination="otv-MG-spf" kind="unwind" identifier="toMainScreen" unwindAction="unwindSegueToMainScreenWithSegue:" id="8dG-yN-tfh"/>
