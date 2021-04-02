@@ -17,9 +17,12 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let cellIdentifire = "cellID"
     let stringArray = ["Срок выполнения задачи","Категория задачи","Приоритет"]
+    let priorityArray = ["Срочно,важно","Срочно,не важно","Не срочно,важно","Не срочно,не важно"]
+    var category = String()
     
     let textField = UITextField()
     let datePicker = UIDatePicker()
+    let pickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +30,18 @@ class NewTaskViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category
+        print("\(self.category)")
+    }
+    
     func setupView(){
         setupTitles()
         closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
         createDatePicker()
+        
+        category = "Hello"
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -51,6 +62,15 @@ class NewTaskViewController: UIViewController {
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         descriptionTextView.layer.addSublayer(bottomLine)
     }
+    
+    func createPickerView(){
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.frame = CGRect(x: CGFloat(0), y: self.view.center.y, width: self.view.frame.width, height: self.view.frame.height/2)
+        self.view.addSubview(pickerView)
+        
+    }
+
     
     func createToolbar() -> UIToolbar{
         let toolBar = UIToolbar()
@@ -78,14 +98,14 @@ class NewTaskViewController: UIViewController {
         self.textField.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
+    
+    @IBAction func unwindSegueBack(segue: UIStoryboardSegue){}
 }
 
-//MARK: -
+//MARK: - UITableViewDelegate,UITableViewDataSource
 extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
@@ -101,6 +121,7 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
             textField.frame = CGRect(x: cell.frame.width-20, y: cell.frame.minY + 5, width: cell.frame.width/3, height: cell.contentView.frame.height)
             textField.textColor = .lightGray
             cell.contentView.addSubview(textField)
+            cell.selectionStyle = .none
             return cell
         case 1:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifire)
@@ -108,6 +129,9 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
             cell.layer.borderWidth = 0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.accessoryType = .disclosureIndicator
+            cell.detailTextLabel?.text = category
+            cell.detailTextLabel?.textColor = .lightGray
+            cell.selectionStyle = .none
             return cell
         case 2:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifire)
@@ -115,6 +139,7 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
             cell.layer.borderWidth = 0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
             return cell
         default:
             return UITableViewCell()
@@ -126,8 +151,35 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if indexPath.row == 1 {
+            performSegue(withIdentifier: "selectCategory", sender: nil)
+        }
+        if indexPath.row == 2 {
+            createPickerView()
+        }
     }
     
+}
+
+
+extension NewTaskViewController: UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return priorityArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return CGFloat(60)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return priorityArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = priorityArray[row]
+    }
 }
