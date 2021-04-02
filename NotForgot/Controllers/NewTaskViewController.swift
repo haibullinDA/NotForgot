@@ -23,6 +23,8 @@ class NewTaskViewController: UIViewController {
     let textField = UITextField()
     let datePicker = UIDatePicker()
     let pickerView = UIPickerView()
+    var closePicker = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,6 @@ class NewTaskViewController: UIViewController {
         setupTitles()
         closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
         createDatePicker()
-        
         category = "Hello"
         
         tableView.delegate = self
@@ -63,14 +64,28 @@ class NewTaskViewController: UIViewController {
         descriptionTextView.layer.addSublayer(bottomLine)
     }
     
+    
     func createPickerView(){
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        pickerView.frame = CGRect(x: CGFloat(0), y: self.view.center.y, width: self.view.frame.width, height: self.view.frame.height/2)
-        self.view.addSubview(pickerView)
-        
-    }
+        self.closePicker = UIButton(frame: CGRect(x: CGFloat(5), y: self.tableView.frame.maxY + 10, width: 80, height: 20))
+        self.closePicker.setTitle("Done", for: .normal)
+        self.closePicker.setTitleColor(.systemBlue, for: .normal)
+        self.closePicker.addTarget(self, action: #selector(closePicker(sender:)), for: .touchUpInside)
+        self.closePicker.isEnabled = true
+        self.closePicker.isHidden = false
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
+        self.pickerView.frame = CGRect(x: CGFloat(0), y: self.closePicker.frame.maxY, width: UIScreen.main.bounds.width, height: self.view.frame.height/5)
+        self.pickerView.isHidden = false
+        self.view.addSubview(closePicker)
+        self.view.addSubview(self.pickerView)
 
+    }
+    
+    @objc func closePicker(sender: UIButton){
+        self.closePicker.isEnabled = false
+        self.closePicker.isHidden = true
+        self.pickerView.isHidden = true
+    }
     
     func createToolbar() -> UIToolbar{
         let toolBar = UIToolbar()
@@ -183,3 +198,4 @@ extension NewTaskViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = priorityArray[row]
     }
 }
+
