@@ -10,6 +10,7 @@
 		CF1E1CA32616D468001C3E69 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1E1CA22616D468001C3E69 /* CategoriesViewController.swift */; };
 		CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE0C26143312008BC22D /* SignUpViewController.swift */; };
 		CF1FEE1326143C0A008BC22D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1FEE1226143C0A008BC22D /* User.swift */; };
+		CF5E68DC261B179000A59DD7 /* ShowDetailsTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E68DB261B178F00A59DD7 /* ShowDetailsTaskViewController.swift */; };
 		CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64E268261482A7002F119F /* MainScreenViewController.swift */; };
 		CFA067672615B21300005F7E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067662615B21300005F7E /* CheckBox.swift */; };
 		CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */; };
@@ -42,6 +43,7 @@
 		CF1E1CA22616D468001C3E69 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		CF1FEE0C26143312008BC22D /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CF1FEE1226143C0A008BC22D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CF5E68DB261B178F00A59DD7 /* ShowDetailsTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsTaskViewController.swift; sourceTree = "<group>"; };
 		CF64E268261482A7002F119F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		CFA067662615B21300005F7E /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				CFE0494D2612D29900ED98AD /* SignInViewController.swift */,
 				CF1FEE0C26143312008BC22D /* SignUpViewController.swift */,
 				CF64E268261482A7002F119F /* MainScreenViewController.swift */,
+				CF5E68DB261B178F00A59DD7 /* ShowDetailsTaskViewController.swift */,
 				CFA0676C2615C47A00005F7E /* NewTaskViewController.swift */,
 				CF1E1CA22616D468001C3E69 /* CategoriesViewController.swift */,
 			);
@@ -276,6 +279,7 @@
 				CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
 				CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */,
+				CF5E68DC261B179000A59DD7 /* ShowDetailsTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

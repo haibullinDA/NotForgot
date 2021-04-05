@@ -48,6 +48,7 @@ class MainScreenViewController: UIViewController {
     }
  
     @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue){}
+    @IBAction func unwindSegueBackFromShowDetailsTask(segue: UIStoryboardSegue){}
 }
 
 
