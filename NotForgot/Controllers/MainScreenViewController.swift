@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MainScreenViewController: UIViewController {
     
@@ -16,23 +17,34 @@ class MainScreenViewController: UIViewController {
     @IBOutlet weak var createNewTaskButton: UICustomButton!
     @IBOutlet weak var plusTaskButton: UIButton!
     @IBOutlet weak var viewTopBorder: UIView!
+    @IBOutlet weak var exitButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     let cellIdentifire = "cell"
+    var priorities = [GetAllPrioritiesResponce]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
         setup()
     }
     
     func setup(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        
         plusTaskButton.isEnabled = false
         plusTaskButton.isHidden = true
+        
         createNewTaskButton.addTarget(self, action: #selector(createTask(sender:)), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitMain(sender:)), for: .touchUpInside)
+        
         loadImage()
+    }
+    
+    @objc func exitMain(sender: UIButton){
+        UserDefaults.standard.removeObject(forKey: WorkWithServer.key)
+        performSegue(withIdentifier: "exit", sender: nil)
     }
     
     @objc func createTask(sender: UICustomButton){

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import Loaf
 
 class SignInViewController: UIViewController {
 
@@ -13,20 +15,20 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     
-    let user = User()
-    
-    let userDefaults = UserDefaults.standard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeAllTextField()
-        //user.remove() Удалить данные для проверки регистрации
+        dismissKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if user.getEMail() != nil && user.getPassword() != nil{
+        let ud = UserDefaults.standard
+        do {
+            let _ = try ud.getObject(forKey: WorkWithServer.key, castTo: UserData.self)
             performSegue(withIdentifier: "goToListTask", sender: nil)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
@@ -41,26 +43,29 @@ class SignInViewController: UIViewController {
         guard let password = self.passwordTextField.text else {
             return
         }
-        if user.validateDate(email: email, password: password){
-            performSegue(withIdentifier: "goToListTask", sender: nil)
-        }else{
-            let alertController = UIAlertController(title: "Предупреждение", message: "Введены неверные данные", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertController.addAction(action)
-            self.present(alertController, animated: true, completion: nil)
+        WorkWithServer.logInRequest(email: email, password: password) { [weak self] flag in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                if flag {
+                    self.performSegue(withIdentifier: "goToListTask", sender: nil)
+                }else{
+                    let alertController = UIAlertController(title: "Предупреждение", message: "Введены неверные данные", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    alertController.addAction(action)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
     }
-    @IBAction func unwindSegueToSignIn(for segue: UIStoryboardSegue){
-        
-    }
-    
+    @IBAction func unwindSegueToSignIn(for segue: UIStoryboardSegue){}
+    @IBAction func unwindSegueExit(for segue: UIStoryboardSegue){}
     
     private func customizeAllTextField(){
         customizeTextField(object: emailTextField)
         customizeTextField(object: passwordTextField)
         passwordTextField.isSecureTextEntry = true
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        //emailTextField.delegate = self
+        //passwordTextField.delegate = self
     }
     private func customizeTextField(object: UITextField) {
         let bottomLine = CALayer()
@@ -71,7 +76,7 @@ class SignInViewController: UIViewController {
     }
 
 }
-
+/*
 //MARK: - UITextFieldDelegate
 extension SignInViewController: UITextFieldDelegate{
 
@@ -92,3 +97,5 @@ extension SignInViewController: UITextFieldDelegate{
         return true
     } // called when 'return' key pressed. return NO to ignore.
 }
+
+*/

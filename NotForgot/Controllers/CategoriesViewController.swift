@@ -16,12 +16,20 @@ class CategoriesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     let cellIdentifire = "cellID"
-    var categoryArray = ["Учеба","Работа","Отдых"]
+    var categoryArray = [GetAllCategoriesResponce]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         
+        WorkWithServer.getAllCategoriesResponce { [weak self] categories in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.categoryArray = categories
+                self.tableView.reloadData()
+            }
+        }
+        
+        setupView()
     }
     
 
@@ -32,11 +40,18 @@ class CategoriesViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
         tableView.separatorStyle = .none
         
+        dismissKeyboard()
+        
         addTargetForButton()
     }
     
     func addTargetForButton(){
         addCategoryButton.addTarget(self, action: #selector(showAlert(sender:)), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(closeCategory(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func closeCategory(sender: UIButton){
+        performSegue(withIdentifier: "back", sender: nil)
     }
     
     @objc func showAlert(sender: UIButton){
@@ -48,10 +63,15 @@ class CategoriesViewController: UIViewController {
         let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
             let text = alertController.textFields?.first
             if let temp = text?.text{
-                self.tableView.performBatchUpdates({
-                    self.categoryArray.append(temp)
-                    self.tableView.insertRows(at: [IndexPath(row: self.categoryArray.endIndex - 1, section: 0)], with: .automatic)
-                }, completion: nil)
+                WorkWithServer.newCategoryRequest(name: temp) { [weak self] object in
+                    guard let self = self else { return }
+                    DispatchQueue.main.async {
+                        print("Im here")
+                        self.categoryArray.append(object)
+                        self.tableView.reloadData()
+                    }
+                }
+                
             }
         }
         
@@ -63,12 +83,12 @@ class CategoriesViewController: UIViewController {
         alertController.addAction(actionSave)
         present(alertController, animated: true, completion: nil)
     }
-    
+    //MARK: - исправить as
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "back"{
             if let vc = segue.destination as? NewTaskViewController{
-                if let text = sender as? String{
-                    vc.category = text
+                if let category = sender as? GetAllCategoriesResponce{
+                    vc.category = category
                 }
             }
         }
@@ -86,8 +106,8 @@ extension CategoriesViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifire)
-        cell.textLabel?.text = categoryArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
+        cell.textLabel?.text = categoryArray[indexPath.row].name
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.lightGray.cgColor
         return cell

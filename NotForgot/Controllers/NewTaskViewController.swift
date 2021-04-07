@@ -17,8 +17,11 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let cellIdentifire = "cellID"
     let stringArray = ["Срок выполнения задачи","Категория задачи","Приоритет"]
-    let priorityArray = ["Срочно,важно","Срочно,не важно","Не срочно,важно","Не срочно,не важно"]
-    var category = String()
+    var priorityArray = [GetAllPrioritiesResponce]()
+    var category = GetAllCategoriesResponce()
+    var priority = GetAllPrioritiesResponce()
+    var date = Int()
+    
     
     let textField = UITextField()
     let datePicker = UIDatePicker()
@@ -28,13 +31,25 @@ class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        WorkWithServer.getAllPrioritiesRequest { [weak self] priorities in
+            guard let self = self else{ return }
+            DispatchQueue.main.async {
+                self.priorityArray = priorities
+            }
+        }
+        
         setupView()
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category
+        if category.name == String(){
+            self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = "Category"
+        }else{
+            self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category.name
+        }
         print("\(self.category)")
     }
     
@@ -42,7 +57,6 @@ class NewTaskViewController: UIViewController {
         setupTitles()
         closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
         createDatePicker()
-        category = "Hello"
         
         dismissKeyboard()
         
@@ -113,6 +127,7 @@ class NewTaskViewController: UIViewController {
         dateFormatter.timeStyle = .none
         
         self.textField.text = dateFormatter.string(from: datePicker.date)
+        date = Int(self.datePicker.date.timeIntervalSince1970)
         self.view.endEditing(true)
     }
     
@@ -146,7 +161,7 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
             cell.layer.borderWidth = 0.5
             cell.layer.borderColor = UIColor.lightGray.cgColor
             cell.accessoryType = .disclosureIndicator
-            cell.detailTextLabel?.text = category
+            cell.detailTextLabel?.text = category.name
             cell.detailTextLabel?.textColor = .lightGray
             cell.selectionStyle = .none
             return cell
@@ -175,7 +190,6 @@ extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
             createPickerView()
         }
     }
-    
 }
 
 
@@ -193,22 +207,13 @@ extension NewTaskViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return priorityArray[row]
+        return priorityArray[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = priorityArray[row]
+        self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = priorityArray[row].name
+        self.priority = priorityArray[row]
     }
 }
 
-extension NewTaskViewController {
-func dismissKeyboard() {
-       let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(dismissKeyboardTouchOutside))
-       tap.cancelsTouchesInView = false
-       view.addGestureRecognizer(tap)
-    }
-    
-    @objc private func dismissKeyboardTouchOutside() {
-       view.endEditing(true)
-    }
-}
+
