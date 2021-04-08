@@ -25,13 +25,16 @@ class CategoriesViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.categoryArray = categories
-                self.tableView.reloadData()
             }
         }
         
         setupView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
 
     
     func setupView(){
@@ -83,7 +86,7 @@ class CategoriesViewController: UIViewController {
         alertController.addAction(actionSave)
         present(alertController, animated: true, completion: nil)
     }
-    //MARK: - исправить as
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "back"{
             if let vc = segue.destination as? NewTaskViewController{

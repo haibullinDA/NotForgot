@@ -81,7 +81,7 @@ final class WorkWithServer{
             }
         }
     }
-    //completion: @escaping(Bool)->Void
+
     static func getAllPrioritiesRequest(completion: @escaping ([GetAllPrioritiesResponce]) -> Void){
         let url = "http://practice.mobile.kreosoft.ru/api/priorities"
         
@@ -141,6 +141,70 @@ final class WorkWithServer{
                 case .failure(let error):
                     print(error)
                 }
+        }
+    }
+    
+    static func newTaskRequest(title: String,description: String,done: Int,deadline: Int,category_id: Int,priority_id:Int,completion: @escaping (Bool)->Void){
+        let url = "http://practice.mobile.kreosoft.ru/api/tasks"
+        let param = CreateTaskRequest(title: title, description: description, done: done, deadline: deadline, category_id: category_id, priority_id: priority_id)
+        
+        let header: HTTPHeaders = [
+            "accept":"application/json",
+            "authorization":"Bearer " + self.getApiToken()
+        ]
+        
+        AF.request(url, method: .post, parameters: param, encoder: JSONParameterEncoder.default, headers: header).validate().responseJSON { (responceJSON) in
+            switch responceJSON.result{
+            case .success:
+                let flag = true
+                completion(flag)
+            case let .failure(error):
+                let flag = false
+                completion(flag)
+                print(error)
+            }
+        }
+    }
+    
+    static func getAllTasksResponce(completion: @escaping ([GetAllTasksResponce]) -> Void){
+        let url = "http://practice.mobile.kreosoft.ru/api/tasks"
+        
+        let header: HTTPHeaders = [
+            "accept":"application/json",
+            "authorization":"Bearer " + self.getApiToken()
+        ]
+        
+        AF.request(url,method: .get,headers: header).validate().responseJSON { responceJSON in
+            switch responceJSON.result {
+                case .success(let value):
+                    print(value)
+                    guard let tasks = GetAllTasksResponce.getArray(from: value) else { return }
+                    completion(tasks)
+                case .failure(let error):
+                    print(error)
+                }
+        }
+        
+    }
+    
+    static func removeTask(id: Int,completion: @escaping (Bool)->Void){
+        let url = "http://practice.mobile.kreosoft.ru/api/tasks/\(id)"
+        
+        let header: HTTPHeaders = [
+            "accept":"application/json",
+            "authorization":"Bearer " + self.getApiToken()
+        ]
+        
+        AF.request(url,method: .delete,headers: header).validate().response { (responce) in
+            switch responce.result{
+            case .success:
+                let flag = true
+                completion(flag)
+            case let .failure(error):
+                let flag = false
+                print(error)
+                completion(flag)
+            }
         }
     }
 }

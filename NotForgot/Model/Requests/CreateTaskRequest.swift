@@ -9,7 +9,7 @@ import Foundation
 
 struct CreateTaskRequest: Encodable {
     var title: String
-    var descrition: String
+    var description: String
     var done: Int
     var deadline: Int
     var category_id: Int

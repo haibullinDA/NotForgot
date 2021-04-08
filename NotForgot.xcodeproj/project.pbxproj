@@ -24,14 +24,15 @@
 		CF5E68DC261B179000A59DD7 /* ShowDetailsTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E68DB261B178F00A59DD7 /* ShowDetailsTaskViewController.swift */; };
 		CF5E68E4261B1EDE00A59DD7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5E68E3261B1EDE00A59DD7 /* UIViewControllerExtension.swift */; };
 		CF64E269261482A7002F119F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64E268261482A7002F119F /* MainScreenViewController.swift */; };
+		CF82F36A261EC35700510C96 /* GetAllTasksResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF82F369261EC35700510C96 /* GetAllTasksResponce.swift */; };
+		CF82F36C261ECFEA00510C96 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF82F36B261ECFEA00510C96 /* UIImageViewExtension.swift */; };
+		CF82F36E261EE5F800510C96 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF82F36D261EE5F800510C96 /* UIColorExtension.swift */; };
 		CF8D6F56261D881900756E83 /* CreateTaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F55261D881900756E83 /* CreateTaskRequest.swift */; };
 		CF8D6F5A261D898600756E83 /* GetAllPrioritiesResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F59261D898600756E83 /* GetAllPrioritiesResponce.swift */; };
 		CF8D6F5C261D89FB00756E83 /* GetAllCategoriesResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F5B261D89FB00756E83 /* GetAllCategoriesResponce.swift */; };
 		CF8D6F5E261D8A5D00756E83 /* NewCategoryResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F5D261D8A5D00756E83 /* NewCategoryResponce.swift */; };
-		CF8D6F60261D8AD900756E83 /* CreateTaskResponce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F5F261D8AD900756E83 /* CreateTaskResponce.swift */; };
 		CF8D6F61261DA8CF00756E83 /* NewCategoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8D6F57261D88CB00756E83 /* NewCategoryRequest.swift */; };
 		CFA067672615B21300005F7E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067662615B21300005F7E /* CheckBox.swift */; };
-		CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */; };
 		CFA0676D2615C47A00005F7E /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0676C2615C47A00005F7E /* NewTaskViewController.swift */; };
 		CFC1AD7626132E160053B333 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */; };
 		CFC1AD7726132E160053B333 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */; };
@@ -55,6 +56,8 @@
 		CFE049512612D29900ED98AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE0494F2612D29900ED98AD /* Main.storyboard */; };
 		CFE049532612D29D00ED98AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE049522612D29D00ED98AD /* Assets.xcassets */; };
 		CFE049562612D29D00ED98AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE049542612D29D00ED98AD /* LaunchScreen.storyboard */; };
+		CFE21AF0261F11CA0007D284 /* UICustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE21AEE261F11CA0007D284 /* UICustomTableViewCell.swift */; };
+		CFE21AF1261F11CA0007D284 /* UICustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFE21AEF261F11CA0007D284 /* UICustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,14 +150,15 @@
 		CF5E68DB261B178F00A59DD7 /* ShowDetailsTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsTaskViewController.swift; sourceTree = "<group>"; };
 		CF5E68E3261B1EDE00A59DD7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CF64E268261482A7002F119F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		CF82F369261EC35700510C96 /* GetAllTasksResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllTasksResponce.swift; sourceTree = "<group>"; };
+		CF82F36B261ECFEA00510C96 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		CF82F36D261EE5F800510C96 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CF8D6F55261D881900756E83 /* CreateTaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskRequest.swift; sourceTree = "<group>"; };
 		CF8D6F57261D88CB00756E83 /* NewCategoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryRequest.swift; sourceTree = "<group>"; };
 		CF8D6F59261D898600756E83 /* GetAllPrioritiesResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllPrioritiesResponce.swift; sourceTree = "<group>"; };
 		CF8D6F5B261D89FB00756E83 /* GetAllCategoriesResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCategoriesResponce.swift; sourceTree = "<group>"; };
 		CF8D6F5D261D8A5D00756E83 /* NewCategoryResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryResponce.swift; sourceTree = "<group>"; };
-		CF8D6F5F261D8AD900756E83 /* CreateTaskResponce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskResponce.swift; sourceTree = "<group>"; };
 		CFA067662615B21300005F7E /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTableViewCell.swift; sourceTree = "<group>"; };
 		CFA0676C2615C47A00005F7E /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		CFC1AD6726132E160053B333 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		CFC1AD6826132E160053B333 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		CFE049522612D29D00ED98AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE049552612D29D00ED98AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFE049572612D29D00ED98AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFE21AEE261F11CA0007D284 /* UICustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomTableViewCell.swift; sourceTree = "<group>"; };
+		CFE21AEF261F11CA0007D284 /* UICustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UICustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,8 +231,8 @@
 				CF2338DD261C61FD0018120B /* SignUpResponce.swift */,
 				CF2338DF261C62170018120B /* SignInResponce.swift */,
 				CF8D6F59261D898600756E83 /* GetAllPrioritiesResponce.swift */,
-				CF8D6F5F261D8AD900756E83 /* CreateTaskResponce.swift */,
 				CF8D6F5D261D8A5D00756E83 /* NewCategoryResponce.swift */,
+				CF82F369261EC35700510C96 /* GetAllTasksResponce.swift */,
 				CF8D6F5B261D89FB00756E83 /* GetAllCategoriesResponce.swift */,
 			);
 			path = Responces;
@@ -279,7 +285,9 @@
 			children = (
 				CF5E68E3261B1EDE00A59DD7 /* UIViewControllerExtension.swift */,
 				CF2338FA261C7B120018120B /* StringExtension.swift */,
+				CF82F36D261EE5F800510C96 /* UIColorExtension.swift */,
 				CF2338D3261C5C850018120B /* UserDefaultsExtension.swift */,
+				CF82F36B261ECFEA00510C96 /* UIImageViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -317,8 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				CFC1AD972613448E0053B333 /* UICustomButton.swift */,
-				CFA067692615B66B00005F7E /* UICustomTableViewCell.swift */,
 				CFA067662615B21300005F7E /* CheckBox.swift */,
+				CFE21AEE261F11CA0007D284 /* UICustomTableViewCell.swift */,
+				CFE21AEF261F11CA0007D284 /* UICustomTableViewCell.xib */,
 			);
 			path = CustomObjects;
 			sourceTree = "<group>";
@@ -503,6 +512,7 @@
 				CFC1AD7C26132E160053B333 /* Nunito-Bold.ttf in Resources */,
 				CFC1AD8026132E160053B333 /* Nunito-SemiBoldItalic.ttf in Resources */,
 				CFC1AD7726132E160053B333 /* Nunito-ExtraBold.ttf in Resources */,
+				CFE21AF1261F11CA0007D284 /* UICustomTableViewCell.xib in Resources */,
 				CFE049512612D29900ED98AD /* Main.storyboard in Resources */,
 				CFC1AD7626132E160053B333 /* Nunito-ExtraBoldItalic.ttf in Resources */,
 				CFC1AD7E26132E160053B333 /* Nunito-Black.ttf in Resources */,
@@ -520,9 +530,11 @@
 			files = (
 				CFA067672615B21300005F7E /* CheckBox.swift in Sources */,
 				CF1E1CA32616D468001C3E69 /* CategoriesViewController.swift in Sources */,
+				CFE21AF0261F11CA0007D284 /* UICustomTableViewCell.swift in Sources */,
 				CFC1AD982613448E0053B333 /* UICustomButton.swift in Sources */,
 				CF2338F5261C66C80018120B /* WorkWithServer.swift in Sources */,
 				CF2338D6261C5FDF0018120B /* UserData.swift in Sources */,
+				CF82F36C261ECFEA00510C96 /* UIImageViewExtension.swift in Sources */,
 				CF2338DE261C61FD0018120B /* SignUpResponce.swift in Sources */,
 				CF8D6F5A261D898600756E83 /* GetAllPrioritiesResponce.swift in Sources */,
 				CF8D6F5C261D89FB00756E83 /* GetAllCategoriesResponce.swift in Sources */,
@@ -532,10 +544,11 @@
 				CF2338F3261C65230018120B /* SignInRequest.swift in Sources */,
 				CF8D6F5E261D8A5D00756E83 /* NewCategoryResponce.swift in Sources */,
 				CFE0494A2612D29900ED98AD /* AppDelegate.swift in Sources */,
+				CF82F36E261EE5F800510C96 /* UIColorExtension.swift in Sources */,
 				CF8D6F56261D881900756E83 /* CreateTaskRequest.swift in Sources */,
 				CFA0676D2615C47A00005F7E /* NewTaskViewController.swift in Sources */,
-				CFA0676A2615B66B00005F7E /* UICustomTableViewCell.swift in Sources */,
 				CF5E68E4261B1EDE00A59DD7 /* UIViewControllerExtension.swift in Sources */,
+				CF82F36A261EC35700510C96 /* GetAllTasksResponce.swift in Sources */,
 				CFE0494C2612D29900ED98AD /* SceneDelegate.swift in Sources */,
 				CF1FEE0D26143312008BC22D /* SignUpViewController.swift in Sources */,
 				CF2338E0261C62170018120B /* SignInResponce.swift in Sources */,
@@ -543,7 +556,6 @@
 				CF2338D4261C5C850018120B /* UserDefaultsExtension.swift in Sources */,
 				CF5E68DC261B179000A59DD7 /* ShowDetailsTaskViewController.swift in Sources */,
 				CF8D6F61261DA8CF00756E83 /* NewCategoryRequest.swift in Sources */,
-				CF8D6F60261D8AD900756E83 /* CreateTaskResponce.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

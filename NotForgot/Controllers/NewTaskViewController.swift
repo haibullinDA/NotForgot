@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Loaf
 
 class NewTaskViewController: UIViewController {
 
+   
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var titleTextView: UITextView!
@@ -22,6 +24,8 @@ class NewTaskViewController: UIViewController {
     var priority = GetAllPrioritiesResponce()
     var date = Int()
     
+    var task = GetAllTasksResponce()
+    @IBOutlet weak var editButtonSave: UIButton!
     
     let textField = UITextField()
     let datePicker = UIDatePicker()
@@ -39,6 +43,16 @@ class NewTaskViewController: UIViewController {
             }
         }
         
+        if task.id != Int() {
+            titleTextView.text = task.title
+            descriptionTextView.text = task.description
+            textField.text = convertDate(unix: task.deadline)
+            tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = task.category.name
+            tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = task.priority.name
+            saveButton.isEnabled = false
+            saveButton.isHidden = true
+        }
+        
         setupView()
         // Do any additional setup after loading the view.
     }
@@ -51,11 +65,26 @@ class NewTaskViewController: UIViewController {
             self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category.name
         }
         print("\(self.category)")
+        
+        
     }
+    
+    func convertDate(unix: Int) -> String{
+        let date = NSDate(timeIntervalSince1970: TimeInterval(unix))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        return dateFormatter.string(from: date as Date)
+    }
+    
     
     func setupView(){
         setupTitles()
         closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(actionSaveTask(sender:)), for: .touchUpInside)
+        editButtonSave.addTarget(self, action: #selector(editSave(sender:)), for: .touchUpInside)
         createDatePicker()
         
         dismissKeyboard()
@@ -67,8 +96,76 @@ class NewTaskViewController: UIViewController {
         tableView.separatorStyle = .none
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editSave"{
+            if let vc = segue.destination as? ShowDetailsTaskViewController{
+                if let task = sender as? GetAllTasksResponce{
+                    vc.task = task
+                }
+            }
+        }
+    }
+    
+    @objc func editSave(sender: UIButton){
+        guard let title = self.titleTextView.text else {
+            return
+        }
+        guard let description = self.descriptionTextView.text else {
+            return
+        }
+        self.saveTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+        
+        performSegue(withIdentifier: "editSave", sender: task)
+    }
+    
+    @objc func actionSaveTask(sender: UIButton){
+        guard let title = self.titleTextView.text else {
+            return
+        }
+        guard let description = self.descriptionTextView.text else {
+            return
+        }
+        self.saveTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+    }
+    
     @objc func closeScreen(sender: UIButton){
-            performSegue(withIdentifier: "toMainScreen", sender: nil)
+        let alertController = UIAlertController(title: "Сохранить задачу?", message: nil, preferredStyle: .alert)
+        let actionClose = UIAlertAction(title: "Нет", style: .cancel) { (actionClose) in
+            self.performSegue(withIdentifier: "toMainScreen", sender: nil)
+        }
+        let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
+            guard let title = self.titleTextView.text else {
+                return
+            }
+            guard let description = self.descriptionTextView.text else {
+                return
+            }
+            self.saveTask(title: title, description: description, done: 0, deadline: self.date, category_id: self.category.id, priority_id: self.priority.id)
+        }
+        alertController.addAction(actionClose)
+        alertController.addAction(actionSave)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func saveTask(title: String,description: String,done: Int,deadline: Int,category_id: Int,priority_id:Int){
+        if self.priority.name.isEmpty || self.category.name.isEmpty || self.titleTextView.text.isEmpty || self.descriptionTextView.text.isEmpty{
+            let alertController = UIAlertController(title: "Предупреждение", message: "Не все поля заполнены", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        }else{
+            WorkWithServer.newTaskRequest(title: title, description: description, done: done, deadline: deadline, category_id: category_id, priority_id: priority_id) { [weak self] flag in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    if flag{
+                        Loaf("Дело сохранено", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                        self.performSegue(withIdentifier: "toMainScreen", sender: nil)
+                    }else{
+                        Loaf("Ошибка сохранения, повторите попытку", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                    }
+                }
+            }
+        }
     }
     
     func setupTitles(){
@@ -136,8 +233,6 @@ class NewTaskViewController: UIViewController {
 
 //MARK: - UITableViewDelegate,UITableViewDataSource
 extension NewTaskViewController: UITableViewDelegate,UITableViewDataSource{
-    
-
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
