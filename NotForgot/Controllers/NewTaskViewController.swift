@@ -17,6 +17,7 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var tableView: UITableView!
+    
     let cellIdentifire = "cellID"
     let stringArray = ["Срок выполнения задачи","Категория задачи","Приоритет"]
     var priorityArray = [GetAllPrioritiesResponce]()
@@ -25,7 +26,8 @@ class NewTaskViewController: UIViewController {
     var date = Int()
     
     var task = GetAllTasksResponce()
-    @IBOutlet weak var editButtonSave: UIButton!
+    var segue = String()
+    var segueCategory = String()
     
     let textField = UITextField()
     let datePicker = UIDatePicker()
@@ -35,38 +37,65 @@ class NewTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        WorkWithServer.getAllPrioritiesRequest { [weak self] priorities in
-            guard let self = self else{ return }
-            DispatchQueue.main.async {
-                self.priorityArray = priorities
-            }
-        }
-        
-        if task.id != Int() {
-            titleTextView.text = task.title
-            descriptionTextView.text = task.description
-            textField.text = convertDate(unix: task.deadline)
-            tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = task.category.name
-            tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = task.priority.name
-            saveButton.isEnabled = false
-            saveButton.isHidden = true
-        }
-        
         setupView()
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if category.name == String(){
-            self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = "Category"
-        }else{
+        updateView()
+    }
+    
+    func server(){
+        WorkWithServer.getAllPrioritiesRequest { [weak self] priorities in
+            guard let self = self else{ return }
+            DispatchQueue.main.async {
+                self.priorityArray = priorities
+            }
+        }
+    }
+    
+    func setupView(){
+        server()
+        
+        setupTitles()
+        
+        closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(actionSaveTask(sender:)), for: .touchUpInside)
+        createDatePicker()
+        
+        dismissKeyboard()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.isScrollEnabled = false
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        tableView.separatorStyle = .none
+    }
+    
+    func updateView(){
+        switch segue {
+        case "newTask":
+            if category.name == String(){
+                self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = "Category"
+            }else{
+                self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category.name
+            }
+        case "editTask":
+            titleTextView.text = task.title
+            descriptionTextView.text = task.description
+            textField.text = convertDate(unix: task.deadline)
+            self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = task.priority.name
+            self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = task.category.name
+        default:
+            Loaf("Ошибка", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }
+        if segueCategory == "back"{
             self.tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = category.name
         }
-        print("\(self.category)")
-        
-        
+        if segueCategory == "back" && (priority.name.isEmpty == false) {
+            self.tableView.cellForRow(at: IndexPath(row: 2, section: 0))?.detailTextLabel?.text = priority.name
+        }
     }
     
     func convertDate(unix: Int) -> String{
@@ -79,43 +108,34 @@ class NewTaskViewController: UIViewController {
         return dateFormatter.string(from: date as Date)
     }
     
-    
-    func setupView(){
-        setupTitles()
-        closeButton.addTarget(self, action: #selector(closeScreen(sender:)), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(actionSaveTask(sender:)), for: .touchUpInside)
-        editButtonSave.addTarget(self, action: #selector(editSave(sender:)), for: .touchUpInside)
-        createDatePicker()
-        
-        dismissKeyboard()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isScrollEnabled = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
-        tableView.separatorStyle = .none
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editSave"{
             if let vc = segue.destination as? ShowDetailsTaskViewController{
-                if let task = sender as? GetAllTasksResponce{
-                    vc.task = task
-                }
+                vc.categoryLabel.text = category.name
+                vc.deadlineLabel.text = textField.text
+                vc.descriptionTextView.text = descriptionTextView.text
+                vc.priorityLabel.text = priority.name
+                vc.priorityLabel.backgroundColor = UIColor(hexString: priority.color)
+                vc.titleLabel.text = titleTextView.text
             }
         }
     }
     
-    @objc func editSave(sender: UIButton){
-        guard let title = self.titleTextView.text else {
-            return
-        }
-        guard let description = self.descriptionTextView.text else {
-            return
-        }
-        self.saveTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+    //MARK: - @objc methods
+    @objc func donePressed(sender: UIBarButtonItem){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
         
-        performSegue(withIdentifier: "editSave", sender: task)
+        self.textField.text = dateFormatter.string(from: datePicker.date)
+        date = Int(self.datePicker.date.timeIntervalSince1970)
+        self.view.endEditing(true)
+    }
+    
+    @objc func closePicker(sender: UIButton){
+        self.closePicker.isEnabled = false
+        self.closePicker.isHidden = true
+        self.pickerView.isHidden = true
     }
     
     @objc func actionSaveTask(sender: UIButton){
@@ -125,26 +145,80 @@ class NewTaskViewController: UIViewController {
         guard let description = self.descriptionTextView.text else {
             return
         }
-        self.saveTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+        switch segue {
+        case "newTask":
+            self.saveTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+        case "editTask":
+            self.editTask(title: title, description: description, done: 0, deadline: date, category_id: category.id, priority_id: priority.id)
+        default:
+            Loaf("Ошибка", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        }
+        
     }
     
     @objc func closeScreen(sender: UIButton){
-        let alertController = UIAlertController(title: "Сохранить задачу?", message: nil, preferredStyle: .alert)
-        let actionClose = UIAlertAction(title: "Нет", style: .cancel) { (actionClose) in
-            self.performSegue(withIdentifier: "toMainScreen", sender: nil)
-        }
-        let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
-            guard let title = self.titleTextView.text else {
-                return
+        switch segue {
+        
+        case "newTask":
+            let alertController = UIAlertController(title: "Сохранить задачу?", message: nil, preferredStyle: .alert)
+            let actionClose = UIAlertAction(title: "Нет", style: .cancel) { (actionClose) in
+                self.performSegue(withIdentifier: "toMainScreen", sender: nil)
             }
-            guard let description = self.descriptionTextView.text else {
-                return
+            let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
+                guard let title = self.titleTextView.text else {
+                    return
+                }
+                guard let description = self.descriptionTextView.text else {
+                    return
+                }
+                self.saveTask(title: title, description: description, done: 0, deadline: self.date, category_id: self.category.id, priority_id: self.priority.id)
             }
-            self.saveTask(title: title, description: description, done: 0, deadline: self.date, category_id: self.category.id, priority_id: self.priority.id)
+            alertController.addAction(actionClose)
+            alertController.addAction(actionSave)
+            present(alertController, animated: true, completion: nil)
+        
+        case "editTask":
+            let alertController = UIAlertController(title: "Сохранить задачу?", message: nil, preferredStyle: .alert)
+            let actionClose = UIAlertAction(title: "Нет", style: .cancel) { (actionClose) in
+                self.performSegue(withIdentifier: "editSave", sender: nil)
+            }
+            let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
+                guard let title = self.titleTextView.text else {
+                    return
+                }
+                guard let description = self.descriptionTextView.text else {
+                    return
+                }
+                self.editTask(title: title, description: description, done: 0, deadline: self.date, category_id: self.category.id, priority_id: self.priority.id)
+            }
+            alertController.addAction(actionClose)
+            alertController.addAction(actionSave)
+            present(alertController, animated: true, completion: nil)
+        
+        default:
+            Loaf("Ошибка", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
-        alertController.addAction(actionClose)
-        alertController.addAction(actionSave)
-        present(alertController, animated: true, completion: nil)
+    }
+    
+    func editTask(title: String,description: String,done: Int,deadline: Int,category_id: Int,priority_id:Int){
+        if self.priority.name.isEmpty || self.category.name.isEmpty || self.titleTextView.text.isEmpty || self.descriptionTextView.text.isEmpty{
+            let alertController = UIAlertController(title: "Предупреждение", message: "Не все поля заполнены", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        }else{
+            WorkWithServer.taskUpdating(id: self.task.id, title: title, description: description, done: done, deadline: deadline, category_id: category_id, priority_id: priority_id) { [weak self] flag in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    if flag{
+                        Loaf("Дело обновлено", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                        self.performSegue(withIdentifier: "editSave", sender: nil)
+                    }else{
+                        Loaf("Ошибка обновления, повторите попытку", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                    }
+                }
+            }
+        }
     }
     
     func saveTask(title: String,description: String,done: Int,deadline: Int,category_id: Int,priority_id:Int){
@@ -194,12 +268,6 @@ class NewTaskViewController: UIViewController {
 
     }
     
-    @objc func closePicker(sender: UIButton){
-        self.closePicker.isEnabled = false
-        self.closePicker.isHidden = true
-        self.pickerView.isHidden = true
-    }
-    
     func createToolbar() -> UIToolbar{
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -218,15 +286,7 @@ class NewTaskViewController: UIViewController {
         textField.inputAccessoryView = createToolbar()
     }
     
-    @objc func donePressed(sender: UIBarButtonItem){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        self.textField.text = dateFormatter.string(from: datePicker.date)
-        date = Int(self.datePicker.date.timeIntervalSince1970)
-        self.view.endEditing(true)
-    }
+    
     
     @IBAction func unwindSegueBack(segue: UIStoryboardSegue){}
 }

@@ -17,9 +17,9 @@ class CheckBox: UIButton {
         var isChecked: Bool = false {
             didSet {
                 if isChecked == true {
-                    self.setImage(checkedImage, for: UIControl.State.normal)
+                    self.setBackgroundImage(checkedImage, for: UIControl.State.normal)
                 } else {
-                    self.setImage(uncheckedImage, for: UIControl.State.normal)
+                    self.setBackgroundImage(uncheckedImage, for: UIControl.State.normal)
                 }
             }
         }

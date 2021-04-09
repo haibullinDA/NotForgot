@@ -24,34 +24,50 @@ class MainScreenViewController: UIViewController {
 
     let cellIdentifire = "cell"
     var tasks = [GetAllTasksResponce]()
+    var tasks2 = [[GetAllTasksResponce]]()
     var numberOfSection = [String]()
     
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
-        
-    }
-    
-    func getTasks(){
-        WorkWithServer.getAllTasksResponce { [weak self] tasks in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.tasks = tasks
-                self.showTableView()
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.getTasks()
-        if tasks.isEmpty == false{
+        self.server()
+        checkTable()
+    }
+    
+    func server(){
+        WorkWithServer.getAllTasksResponce { [weak self] tasks in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.tasks = tasks
+                self.createTaskForTable()
+                self.checkTable()
+            }
+        }
+    }
+    
+    func createTaskForTable(){
+        let numberSection = calculateNumberOfSection()
+        for i in 0..<numberSection{
+            self.tasks2.append([GetAllTasksResponce]())
+            for task in self.tasks{
+                if task.category.name == self.numberOfSection[i]{
+                    self.tasks2[i].append(task)
+                }
+            }
+        }
+    }
+    
+    func checkTable(){
+        if self.tasks.isEmpty == false {
             self.showTableView()
         }else{
-            hiddenTableView()
+            self.hiddenTableView()
         }
     }
     
@@ -101,8 +117,10 @@ class MainScreenViewController: UIViewController {
     @objc func refreshTable(sender: UIRefreshControl){
         if self.tasks.isEmpty{
             self.hiddenTableView()
+            self.refreshControl.endRefreshing()
         }else{
-            self.getTasks()
+            self.server()
+            self.refreshControl.endRefreshing()
         }
     }
     
@@ -112,7 +130,8 @@ class MainScreenViewController: UIViewController {
     }
     
     @objc func createTask(sender: UICustomButton){
-        performSegue(withIdentifier: "newTask", sender: nil)
+        let segue = "newTask"
+        performSegue(withIdentifier: segue, sender: segue)
     }
     
     private func loadImage(){
@@ -155,29 +174,31 @@ class MainScreenViewController: UIViewController {
         return arrayOfRowInSection
     }
     
-    
-    
-    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue){}
-    @IBAction func unwindSegueBackFromShowDetailsTask(segue: UIStoryboardSegue){}
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailsTask"{
+        switch segue.identifier {
+        case "detailsTask":
             if let vc = segue.destination as? ShowDetailsTaskViewController{
                 if let task = sender as? GetAllTasksResponce{
                     vc.task = task
                 }
             }
+        case "newTask":
+            if let vc = segue.destination as? NewTaskViewController{
+                if let text = sender as? String{
+                    vc.segue = text
+                }
+            }
+        default: break
         }
     }
     
-    
+    @IBAction func unwindSegueToMainScreen(segue: UIStoryboardSegue){}
+    @IBAction func unwindSegueBackFromShowDetailsTask(segue: UIStoryboardSegue){}
 }
 
 //MARK: - UITableViewDelegate,UITableViewDataSource
 extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
-    
-  
-    
+        
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
         
@@ -193,6 +214,7 @@ extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 70
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.calculateNumberOfSection()
     }
@@ -208,22 +230,17 @@ extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UICustomTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as! UICustomTableViewCell
-        cell.body.backgroundColor = UIColor(hexString: self.tasks[indexPath.row].priority.color)
         
-        for task in self.tasks{
-            if task.category.name == self.numberOfSection[indexPath.section]{
-                cell.titleLabel.text = task.title
-                cell.subtitleLabel.text = task.description
-                cell.body.backgroundColor = UIColor(hexString: task.priority.color)
-                return cell
-            }
-        }
-        return UICustomTableViewCell()
+        cell.body.backgroundColor = UIColor(hexString: self.tasks2[indexPath.section][indexPath.row].priority.color)
+        cell.titleLabel.text = self.tasks2[indexPath.section][indexPath.row].title
+        cell.subtitleLabel.text = self.tasks2[indexPath.section][indexPath.row].description
+
+        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            WorkWithServer.removeTask(id: self.tasks[indexPath.row].id) { [weak self] flag in
+            WorkWithServer.removeTask(id: self.tasks2[indexPath.section][indexPath.row].id) { [weak self] flag in
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     if flag{
@@ -233,12 +250,12 @@ extension MainScreenViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
             }
-            self.getTasks()
+            self.server()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detailsTask", sender: self.tasks[indexPath.row])
+        performSegue(withIdentifier: "detailsTask", sender: self.tasks2[indexPath.section][indexPath.row])
     }
 
 }

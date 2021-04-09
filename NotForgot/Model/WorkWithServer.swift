@@ -177,7 +177,6 @@ final class WorkWithServer{
         AF.request(url,method: .get,headers: header).validate().responseJSON { responceJSON in
             switch responceJSON.result {
                 case .success(let value):
-                    print(value)
                     guard let tasks = GetAllTasksResponce.getArray(from: value) else { return }
                     completion(tasks)
                 case .failure(let error):
@@ -203,6 +202,28 @@ final class WorkWithServer{
             case let .failure(error):
                 let flag = false
                 print(error)
+                completion(flag)
+            }
+        }
+    }
+    
+    static func taskUpdating(id: Int,title: String,description: String,done: Int,deadline: Int,category_id: Int,priority_id:Int,completion: @escaping (Bool)->Void){
+        let url = "http://practice.mobile.kreosoft.ru/api/tasks/\(id)"
+        let param = CreateTaskRequest(title: title, description: description, done: done, deadline: deadline, category_id: category_id, priority_id: priority_id)
+        
+        let header: HTTPHeaders = [
+            "accept":"application/json",
+            "authorization":"Bearer " + self.getApiToken()
+        ]
+        
+        AF.request(url, method: .patch, parameters: param, encoder: JSONParameterEncoder.default, headers: header).validate().response { (responce) in
+            switch responce.result{
+            case .success:
+                let flag = true
+                completion(flag)
+            case let .failure(error):
+                print(error)
+                let flag = false
                 completion(flag)
             }
         }

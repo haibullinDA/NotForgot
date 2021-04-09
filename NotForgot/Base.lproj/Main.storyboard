@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почтовый ящик" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VVj-Rp-1Zc">
-                                <rect key="frame" x="20" y="336" width="374" height="41"/>
+                                <rect key="frame" x="20" y="336" width="374" height="36.5"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <userDefinedRuntimeAttributes>
@@ -35,7 +35,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNg-Aq-pCe">
-                                <rect key="frame" x="20" y="401" width="374" height="41"/>
+                                <rect key="frame" x="20" y="396.5" width="374" height="36.5"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="23"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -45,16 +45,16 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLf-WL-eWO">
-                                <rect key="frame" x="68" y="751" width="278.5" height="36"/>
+                                <rect key="frame" x="66" y="755" width="282" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет аккаунта?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-qN-NRY">
-                                        <rect key="frame" x="0.0" y="0.0" width="113.5" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="32"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgJ-PW-YvH">
-                                        <rect key="frame" x="113.5" y="0.0" width="165" height="36"/>
+                                        <rect key="frame" x="115" y="0.0" width="167" height="32"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                         <state key="normal" title="Зарегистрироваться"/>
                                         <connections>
@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP0-5v-gbR" customClass="UICustomButton" customModule="NotForgot" customModuleProvider="target">
-                                <rect key="frame" x="63.5" y="668" width="287" height="48"/>
+                                <rect key="frame" x="63.5" y="672" width="287" height="48"/>
                                 <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="5T1-U9-MNa"/>
@@ -175,14 +175,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-Mi-m7U">
                                 <rect key="frame" x="128" y="751" width="158.5" height="36"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Есть аккаунт?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZB-TN-3cV">
-                                        <rect key="frame" x="0.0" y="0.0" width="109.5" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Есть аккаунт?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZB-TN-3cV">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="36"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUt-7a-FAw">
-                                        <rect key="frame" x="109.5" y="0.0" width="49" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUt-7a-FAw">
+                                        <rect key="frame" x="113" y="0.0" width="45.5" height="36"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                         <state key="normal" title="Войти"/>
                                         <connections>
@@ -196,7 +196,7 @@
                                 </constraints>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Почтовый ящик" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OlM-Es-MJz">
-                                <rect key="frame" x="20" y="168" width="374" height="41"/>
+                                <rect key="frame" x="20" y="168" width="374" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="WCD-JK-oLx"/>
                                 </constraints>
@@ -209,7 +209,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Имя" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GT5-hc-mBP">
-                                <rect key="frame" x="20" y="233" width="374" height="41"/>
+                                <rect key="frame" x="20" y="228.5" width="374" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="1qa-Vy-qJw"/>
                                 </constraints>
@@ -222,7 +222,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Фамилия" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d43-zb-B4R">
-                                <rect key="frame" x="20" y="298" width="374" height="41"/>
+                                <rect key="frame" x="20" y="289" width="374" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="FaI-ml-6YG"/>
                                 </constraints>
@@ -235,7 +235,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gA-Xe-v3O">
-                                <rect key="frame" x="20" y="363" width="374" height="41"/>
+                                <rect key="frame" x="20" y="349.5" width="374" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="PP5-lW-ZXN"/>
                                 </constraints>
@@ -248,7 +248,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Повторите пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cLe-i8-4r8">
-                                <rect key="frame" x="20" y="428" width="374" height="41"/>
+                                <rect key="frame" x="20" y="410" width="374" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="RqH-ch-jeI"/>
                                 </constraints>
@@ -461,6 +461,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nIK-p3-iZJ"/>
                     <connections>
+                        <outlet property="backButton" destination="Wcz-wh-Ddg" id="ByZ-Yy-muU"/>
                         <outlet property="categoryLabel" destination="TYr-yB-aSs" id="NiE-KF-yYj"/>
                         <outlet property="deadlineLabel" destination="ePU-uT-Hae" id="WHl-aa-zaD"/>
                         <outlet property="descriptionTextView" destination="zVK-fN-ROh" id="0S6-x1-5GO"/>
@@ -475,7 +476,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ch-IR-GCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Dh2-mb-vGf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1605.7971014492755" y="780.80357142857144"/>
+            <point key="canvasLocation" x="1606" y="781"/>
         </scene>
         <!--Main Screen View Controller-->
         <scene sceneID="oJJ-vE-6mx">
@@ -673,17 +674,6 @@
                                     <color key="titleColor" systemColor="systemBlueColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXd-DN-TY5">
-                                <rect key="frame" x="312" y="74" width="91" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="I5Y-l6-1PT"/>
-                                    <constraint firstAttribute="width" constant="91" id="dL1-fC-EQF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                <state key="normal" title="Сохранить">
-                                    <color key="titleColor" systemColor="systemBlueColor"/>
-                                </state>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aza-Ji-By1"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -703,15 +693,12 @@
                             <constraint firstItem="4KG-l9-ppZ" firstAttribute="leading" secondItem="aza-Ji-By1" secondAttribute="leading" id="efq-mF-Mc8"/>
                             <constraint firstItem="FtY-h4-h8A" firstAttribute="top" secondItem="qGU-M0-zWk" secondAttribute="bottom" constant="20" id="jcM-LC-LcQ"/>
                             <constraint firstItem="aza-Ji-By1" firstAttribute="trailing" secondItem="4KG-l9-ppZ" secondAttribute="trailing" id="jhg-59-qQl"/>
-                            <constraint firstItem="xXd-DN-TY5" firstAttribute="top" secondItem="aza-Ji-By1" secondAttribute="top" constant="30" id="oQR-69-HlM"/>
-                            <constraint firstItem="aza-Ji-By1" firstAttribute="trailing" secondItem="xXd-DN-TY5" secondAttribute="trailing" constant="11" id="xEZ-wW-0Nj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="onr-8U-EPL"/>
                     <connections>
                         <outlet property="closeButton" destination="OSw-L5-bZH" id="gnR-Nw-ZNA"/>
                         <outlet property="descriptionTextView" destination="qGU-M0-zWk" id="FKW-Vs-UyS"/>
-                        <outlet property="editButtonSave" destination="xXd-DN-TY5" id="fcG-Ad-ZsH"/>
                         <outlet property="saveButton" destination="Xp9-61-L2i" id="9HX-cT-OsL"/>
                         <outlet property="tableView" destination="FtY-h4-h8A" id="z5z-Ng-unF"/>
                         <outlet property="titleTextView" destination="4KG-l9-ppZ" id="9ts-V4-De7"/>
@@ -723,7 +710,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCh-wY-Ja7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="otv-MG-spf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2377" y="408"/>
+            <point key="canvasLocation" x="2655" y="408"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="SDj-ey-jHI">
@@ -812,18 +799,18 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKY-He-Bjz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="zQ6-De-8y4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3213" y="408"/>
+            <point key="canvasLocation" x="3403" y="408"/>
         </scene>
     </scenes>
     <designables>
         <designable name="4mS-E6-Ixn">
-            <size key="intrinsicContentSize" width="295" height="48"/>
+            <size key="intrinsicContentSize" width="292" height="43"/>
         </designable>
         <designable name="VlB-MH-OPL">
-            <size key="intrinsicContentSize" width="75" height="48"/>
+            <size key="intrinsicContentSize" width="75" height="43"/>
         </designable>
         <designable name="cP0-5v-gbR">
-            <size key="intrinsicContentSize" width="75" height="48"/>
+            <size key="intrinsicContentSize" width="75" height="43"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

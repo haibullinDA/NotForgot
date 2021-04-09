@@ -17,19 +17,21 @@ class ShowDetailsTaskViewController: UIViewController {
     @IBOutlet weak var priorityLabel: UILabel!
     
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     var task = GetAllTasksResponce()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        editButton.addTarget(self, action: #selector(editTask(sender:)), for: .touchUpInside)
+        setup()
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        setup()
-    }
+    
     func setup(){
+        
+        editButton.addTarget(self, action: #selector(editTask(sender:)), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backMainScreen(sender:)), for: .touchUpInside)
+        
         titleLabel.text = task.title
         categoryLabel.text = task.category.name
         descriptionTextView.text = task.description
@@ -60,15 +62,23 @@ class ShowDetailsTaskViewController: UIViewController {
         return dateFormatter.string(from: date as Date)
     }
 
+    @objc func backMainScreen(sender: UIButton){
+        performSegue(withIdentifier: "backToMainScreen", sender: nil)
+    }
+    
     @objc func editTask(sender: UIButton){
-        performSegue(withIdentifier: "editTask", sender: self.task)
+        let segue = "editTask"
+        performSegue(withIdentifier: segue, sender: (self.task,segue))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTask"{
             if let vc = segue.destination as? NewTaskViewController{
-                if let task = sender as? GetAllTasksResponce{
+                if let (task,text) = sender as? (GetAllTasksResponce,String){
                     vc.task = task
+                    vc.category = task.category
+                    vc.priority = task.priority
+                    vc.segue = text
                 }
             }
         }

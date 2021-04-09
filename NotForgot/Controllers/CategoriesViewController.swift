@@ -9,25 +9,16 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var addCategoryButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+    
     let cellIdentifire = "cellID"
     var categoryArray = [GetAllCategoriesResponce]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        WorkWithServer.getAllCategoriesResponce { [weak self] categories in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.categoryArray = categories
-            }
-        }
-        
         setupView()
     }
     
@@ -36,8 +27,18 @@ class CategoriesViewController: UIViewController {
         self.tableView.reloadData()
     }
 
+    func server(){
+        WorkWithServer.getAllCategoriesResponce { [weak self] categories in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.categoryArray = categories
+            }
+        }
+    }
     
     func setupView(){
+        server()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
@@ -60,7 +61,7 @@ class CategoriesViewController: UIViewController {
     @objc func showAlert(sender: UIButton){
         let alertController = UIAlertController(title: "Добавить категорию задачи", message: "Название должно кратко отражать суть категории", preferredStyle: .alert)
         let actionClose = UIAlertAction(title: "Закрыть", style: .cancel) { (actionClose) in
-            
+
         }
         
         let actionSave = UIAlertAction(title: "Сохранить", style: .default) { (actionSave) in
@@ -74,7 +75,6 @@ class CategoriesViewController: UIViewController {
                         self.tableView.reloadData()
                     }
                 }
-                
             }
         }
         
@@ -92,6 +92,7 @@ class CategoriesViewController: UIViewController {
             if let vc = segue.destination as? NewTaskViewController{
                 if let category = sender as? GetAllCategoriesResponce{
                     vc.category = category
+                    vc.segueCategory = "back"
                 }
             }
         }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct GetAllTasksResponce {
+    
     var id: Int
     var title: String
     var description: String

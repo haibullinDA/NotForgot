@@ -20,7 +20,6 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         customizeAllTextField()
         dismissKeyboard()
     }
@@ -34,9 +33,12 @@ class SignUpViewController: UIViewController {
         
         passwordTextField.isSecureTextEntry = true
         passwordValidateTextField.isSecureTextEntry = true
+        
         emailTextField.delegate = self
+        
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
+        
         passwordTextField.delegate = self
         passwordValidateTextField.delegate = self
     }
@@ -65,25 +67,36 @@ class SignUpViewController: UIViewController {
         guard let passwordValidate = passwordValidateTextField.text else{
             return
         }
-        
-        if firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || passwordValidate.isEmpty{
-            let alertController = UIAlertController(title: "Предупреждение", message: "Не все поля заполнены", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertController.addAction(action)
-            self.present(alertController, animated: true, completion: nil)
-        } else{
-            WorkWithServer.registerRequest(email: email, name: firstName+" "+lastName, password: password) { [weak self] flag in
-                guard let self = self else {return}
-                DispatchQueue.main.async {
-                    if flag{
-                        Loaf("Регистрация успешна", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
-                        self.performSegue(withIdentifier: "goBackSignIn", sender: nil)
-                    }else{
-                        Loaf("Ошибка регистрации", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+        if email.isValidEmail() == false{
+            showAlert(message: "Введите почтовый ящик")
+        }else{
+            if password != passwordValidate{
+                showAlert(message: "Пароли не совпадаютс")
+            }else{
+                if firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || passwordValidate.isEmpty{
+                    showAlert(message: "Не все поля заполнены")
+                } else{
+                    WorkWithServer.registerRequest(email: email, name: firstName+" "+lastName, password: password) { [weak self] flag in
+                        guard let self = self else {return}
+                        DispatchQueue.main.async {
+                            if flag{
+                                Loaf("Регистрация успешна", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                                self.performSegue(withIdentifier: "goBackSignIn", sender: nil)
+                            }else{
+                                Loaf("Ошибка регистрации", state: .error, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+    
+    func showAlert(message: String){
+        let alertController = UIAlertController(title: "Предупреждение", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func goBackSignIn(_ sender: Any) {
@@ -96,35 +109,22 @@ class SignUpViewController: UIViewController {
 //MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate{
     
-
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.emailTextField{
             if let text = textField.text{
                 if text.isValidEmail() == false{
-                    let alertController = UIAlertController(title: "Предупреждение", message: "Введите почтовый ящик", preferredStyle: .actionSheet)
-                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                    alertController.addAction(action)
-                    self.present(alertController, animated: true, completion: nil)
-                    textField.resignFirstResponder()
-                    return true
+                    Loaf("Неправильный почтовый ящик", state: .warning, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
                 }
             }
         }
+        
         if textField == self.passwordValidateTextField{
             if let text = textField.text{
                 if text != self.passwordTextField.text{
-                    let alertController = UIAlertController(title: "Предупреждение", message: "Пароли не совпадают", preferredStyle: .actionSheet)
-                    let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                    alertController.addAction(action)
-                    self.present(alertController, animated: true, completion: nil)
-                    textField.resignFirstResponder()
-                    return true
+                    Loaf("Пароли не совпадают", state: .warning, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                    self.passwordValidateTextField.text = ""
                 }
             }
         }
-        textField.resignFirstResponder()
-        return true
     }
-    
 }
